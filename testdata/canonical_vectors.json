@@ -1,0 +1,281 @@
+{
+  "_comment": "SHARED cross-language test vectors for a2a-protocol-core. Generated from the Python reference impl (source of truth) by generate_vectors.py. Both the Python and the @dnsofmoney/a2a-protocol-core (TS) test suites assert against THIS file byte-for-byte. Do not hand-edit hashes \u2014 regenerate.",
+  "version": "0.1.0",
+  "pay_uri": [
+    {
+      "input": "pay:vendor.alpha",
+      "valid": true
+    },
+    {
+      "input": "pay:agent.compute",
+      "valid": true
+    },
+    {
+      "input": "pay:a",
+      "valid": true
+    },
+    {
+      "input": "pay:a.b.c.d",
+      "valid": true
+    },
+    {
+      "input": "pay:with-hyphen.ok",
+      "valid": true
+    },
+    {
+      "input": "PAY:VENDOR.ALPHA",
+      "valid": false
+    },
+    {
+      "input": "not-a-pay-uri",
+      "valid": false
+    },
+    {
+      "input": "pay:-leadinghyphen",
+      "valid": false
+    },
+    {
+      "input": "pay:",
+      "valid": false
+    },
+    {
+      "input": "pay:UPPER",
+      "valid": false
+    },
+    {
+      "input": "vendor.alpha",
+      "valid": false
+    }
+  ],
+  "normalize_action": {
+    "ok": [
+      {
+        "input": "send",
+        "output": "EXECUTE_PAYMENT"
+      },
+      {
+        "input": "transfer",
+        "output": "EXECUTE_PAYMENT"
+      },
+      {
+        "input": "pay",
+        "output": "EXECUTE_PAYMENT"
+      },
+      {
+        "input": "payment",
+        "output": "EXECUTE_PAYMENT"
+      },
+      {
+        "input": "  SEND  ",
+        "output": "EXECUTE_PAYMENT"
+      },
+      {
+        "input": "resolve",
+        "output": "QUERY"
+      },
+      {
+        "input": "lookup",
+        "output": "QUERY"
+      },
+      {
+        "input": "verify",
+        "output": "VERIFY"
+      },
+      {
+        "input": "check",
+        "output": "VERIFY"
+      },
+      {
+        "input": "confirm",
+        "output": "VERIFY"
+      },
+      {
+        "input": "report",
+        "output": "REPORT"
+      },
+      {
+        "input": "status",
+        "output": "REPORT"
+      },
+      {
+        "input": "QUERY",
+        "output": "QUERY"
+      }
+    ],
+    "error": [
+      "frobnicate",
+      "",
+      "xyz",
+      "sendd"
+    ]
+  },
+  "canonical_hash": [
+    {
+      "name": "base",
+      "request": {
+        "action": "send",
+        "amount": "2.50",
+        "currency": "USD",
+        "alias": "pay:agent.compute"
+      },
+      "expected_hash": "9f719d1efcf1acbc7d18e5347d6ee29b6967bcea095b0c50dac0ecc962593e20"
+    },
+    {
+      "name": "synonym_transfer",
+      "request": {
+        "action": "transfer",
+        "amount": "2.50",
+        "currency": "USD",
+        "alias": "pay:agent.compute"
+      },
+      "expected_hash": "9f719d1efcf1acbc7d18e5347d6ee29b6967bcea095b0c50dac0ecc962593e20"
+    },
+    {
+      "name": "synonym_pay",
+      "request": {
+        "action": "pay",
+        "amount": "2.50",
+        "currency": "USD",
+        "alias": "pay:agent.compute"
+      },
+      "expected_hash": "9f719d1efcf1acbc7d18e5347d6ee29b6967bcea095b0c50dac0ecc962593e20"
+    },
+    {
+      "name": "with_noise",
+      "request": {
+        "action": "payment",
+        "amount": "2.50",
+        "currency": "USD",
+        "alias": "pay:agent.compute",
+        "session_id": "s1",
+        "request_id": "r1",
+        "trace_id": "t1",
+        "timestamp": "2026-06-28T00:00:00Z",
+        "idempotency_key": "idem-1",
+        "memo": "lunch",
+        "payload_hash": "ph",
+        "canonical_hash": "old",
+        "created_at": "x",
+        "updated_at": "y"
+      },
+      "expected_hash": "9f719d1efcf1acbc7d18e5347d6ee29b6967bcea095b0c50dac0ecc962593e20"
+    },
+    {
+      "name": "unknown_action",
+      "request": {
+        "action": "frobnicate",
+        "amount": "1",
+        "currency": "XRP"
+      },
+      "expected_hash": "36bfcdde32ce25f9c0cfc3d1817a32acb5b882225308dc6d29aaabde8c706380"
+    },
+    {
+      "name": "rail_included",
+      "request": {
+        "action": "send",
+        "amount": "10",
+        "currency": "USD",
+        "rail": "xrpl",
+        "alias": "pay:x"
+      },
+      "expected_hash": "b138c5962df892d1d241350aaa4d39a61f1bcbd0a2d9896649fbaf624badda83"
+    },
+    {
+      "name": "preferred_rail",
+      "request": {
+        "action": "send",
+        "amount": "10",
+        "currency": "USD",
+        "preferred_rail": "xrpl",
+        "alias": "pay:x"
+      },
+      "expected_hash": "15eba96dd9746623b7c0438709ade2e7dc45abf389f5418882959fbdc220c51b"
+    },
+    {
+      "name": "category",
+      "request": {
+        "action": "verify",
+        "amount": "5",
+        "currency": "USD",
+        "payment_category": "compute",
+        "alias": "pay:agent.compute"
+      },
+      "expected_hash": "d6a87eca79c9f81ecd0ef40f36f3bba9240bcf6ce5ce70665c2f3c77dea604f7"
+    },
+    {
+      "name": "alias_uri_variant",
+      "request": {
+        "action": "send",
+        "amount": "3",
+        "currency": "USD",
+        "alias_uri": "pay:agent.compute"
+      },
+      "expected_hash": "02422a90ba079ef599280e02385255c09c1d9efff448835b29e3a85af23d1ada"
+    },
+    {
+      "name": "numeric_int_amount",
+      "request": {
+        "action": "send",
+        "amount": 10,
+        "currency": "USD",
+        "alias": "pay:x"
+      },
+      "expected_hash": "29ea6c0d24255296ac5047f05cd761a971d58623043bc01a395c373870b31cd2"
+    },
+    {
+      "name": "numeric_float_amount",
+      "request": {
+        "action": "send",
+        "amount": 2.5,
+        "currency": "USD",
+        "alias": "pay:x"
+      },
+      "expected_hash": "a6466b7002f12f132f5ff6aada2c1fe1bfffb77502250ee6a4df8ed62def62b8"
+    },
+    {
+      "name": "payment_type_field",
+      "request": {
+        "action": "report",
+        "amount": "0.01",
+        "currency": "XRP",
+        "payment_type": "micropayment",
+        "alias_name": "pay:agent.analysis"
+      },
+      "expected_hash": "230fa9b1056f7907e8ae93bb4c5f6f2d4d26d3ff23487782a21c87f14707f7ed"
+    }
+  ],
+  "canonical_hash_equivalence_groups": [
+    [
+      "base",
+      "synonym_transfer",
+      "synonym_pay",
+      "with_noise"
+    ]
+  ],
+  "semantic_hash": [
+    {
+      "name": "send_msg",
+      "message": {
+        "action": "send",
+        "intent": "pay vendor"
+      },
+      "normalized": {
+        "action": "EXECUTE_PAYMENT",
+        "intent": "pay vendor"
+      },
+      "expected_hash": "c78571192616d3675014dc1eb405fc965f2acd6354a73daf823ccb639b141e16"
+    },
+    {
+      "name": "verify_msg",
+      "message": {
+        "action": "check",
+        "ref": "abc"
+      },
+      "normalized": {
+        "action": "VERIFY",
+        "ref": "abc"
+      },
+      "expected_hash": "9ce7da89f5f6ca3864ecf9eb841a15497ad666bef0c4100d4a6c5db83f13eb17"
+    }
+  ]
+}

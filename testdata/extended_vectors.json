@@ -1,0 +1,181 @@
+{
+  "_comment": "Extended cross-language vectors for the Go SDK, generated from a2a-protocol-core by gen_extended_vectors.py. Do not hand-edit.",
+  "a2a_protocol_core_version": "0.3.0",
+  "canonical_hash": [
+    {
+      "name": "float_trailing_zero",
+      "request_json": "{\"action\": \"send\", \"amount\": 10.0, \"currency\": \"USD\", \"alias\": \"pay:x\"}",
+      "expected_hash": "892bd724212bc4efee43f6bb6d16ba3dd5dd4ffaccac7ae81e57cec5433570cd"
+    },
+    {
+      "name": "int_amount",
+      "request_json": "{\"action\": \"send\", \"amount\": 10, \"currency\": \"USD\", \"alias\": \"pay:x\"}",
+      "expected_hash": "29ea6c0d24255296ac5047f05cd761a971d58623043bc01a395c373870b31cd2"
+    },
+    {
+      "name": "float_exp_large",
+      "request_json": "{\"amount\": 1e16, \"currency\": \"USD\"}",
+      "expected_hash": "463271f28b49ed9a1f434da965e4f4b6371f8bc6463a0685eb7aaffd8bb47a4c"
+    },
+    {
+      "name": "float_below_exp",
+      "request_json": "{\"amount\": 1e15, \"currency\": \"USD\"}",
+      "expected_hash": "7a2738b787dbd8db4ad123be4e1a9d2c3a861bdf7dd998793de43b576ed1b1d0"
+    },
+    {
+      "name": "float_exp_small",
+      "request_json": "{\"amount\": 1e-05, \"currency\": \"USD\"}",
+      "expected_hash": "c600e8d53319c3280fa40b494bc6631fd6cc539d9b7a92a76755da69775e5b52"
+    },
+    {
+      "name": "float_fixed_small",
+      "request_json": "{\"amount\": 0.0001, \"currency\": \"USD\"}",
+      "expected_hash": "9989ecce40694a8455fee2bfb22cfc27645e668aec51805eed895fc87fe33ab1"
+    },
+    {
+      "name": "float_point_one",
+      "request_json": "{\"amount\": 0.1, \"currency\": \"USD\"}",
+      "expected_hash": "39b51fdb0729e3fc6249984025cfcecfe1bafc46416138b584ae13103037e374"
+    },
+    {
+      "name": "float_neg_zero",
+      "request_json": "{\"amount\": -0.0, \"currency\": \"USD\"}",
+      "expected_hash": "1a61e9a199ece7e7d78fec1459eade18a0756c09a8fb4e1330d34e5782a0c908"
+    },
+    {
+      "name": "float_long",
+      "request_json": "{\"amount\": 123456.789012345, \"currency\": \"USD\"}",
+      "expected_hash": "9ffeee6802168328e91723200a17a06d2ee87bc526191d4a17933ee4f6f18bba"
+    },
+    {
+      "name": "big_int",
+      "request_json": "{\"amount\": 123456789012345678901234567890, \"currency\": \"USD\"}",
+      "expected_hash": "952e31b19352b00836222a53d1a4277d52fe1a9e0c03e98a62c984da43735ebc"
+    },
+    {
+      "name": "bool_amount",
+      "request_json": "{\"amount\": true, \"currency\": \"USD\"}",
+      "expected_hash": "3957167a7a09c0ef42df30051bade7770176fc649df4ae9d5749c2bab51fb1b0"
+    },
+    {
+      "name": "bool_false_rail",
+      "request_json": "{\"amount\": \"1\", \"rail\": false}",
+      "expected_hash": "55e0850faad67775cb094470b0f86187e8e00b8df5ab6825de932d76ceb59731"
+    },
+    {
+      "name": "int_action",
+      "request_json": "{\"action\": 5, \"amount\": \"1\"}",
+      "expected_hash": "5d73da8c54e772f61bb55b2ec9284e6e8fa5a8edb88a37f6eef1fdb201c32926"
+    },
+    {
+      "name": "null_skipped",
+      "request_json": "{\"action\": \"pay\", \"amount\": \"1\", \"rail\": null, \"alias\": null}",
+      "expected_hash": "5ed9d1b6cd9bf8b78e3b553f343faad60dd93a6c05cdf14ff630a708fa3a8b90"
+    },
+    {
+      "name": "unicode_alias",
+      "request_json": "{\"action\": \"send\", \"amount\": \"1\", \"alias\": \"pay:caf\\u00e9\"}",
+      "expected_hash": "7113a548f12ee838bc3262d5caa743ccab37e9f6b7af3beb97250183563c86f0"
+    },
+    {
+      "name": "astral_currency",
+      "request_json": "{\"amount\": \"1\", \"currency\": \"\\ud83d\\udcb5\"}",
+      "expected_hash": "9a8d95edbe95ab6bddf1651514faefe17627511390131bfa2bd009ec20ae1374"
+    },
+    {
+      "name": "del_and_controls",
+      "request_json": "{\"amount\": \"1\", \"currency\": \"a\\u007fb\\u0001c\\u001f\\n\\t\\\"\\\\\"}",
+      "expected_hash": "36b597086585898fa90844323b73715e441d1cc610f6e5883e96b9665a7a3ec9"
+    },
+    {
+      "name": "nested_category",
+      "request_json": "{\"amount\": \"1\", \"payment_category\": {\"b\": 1, \"a\": [1, 2.0, \"x\", null, true]}}",
+      "expected_hash": "97e3092f0e50123575eab8cde27d0c00c4cf7a80f747b62a19fa8a821c594530"
+    },
+    {
+      "name": "separator_whitespace_action",
+      "request_json": "{\"action\": \"\\u001csend\\u001f\", \"amount\": \"1\"}",
+      "expected_hash": "5ed9d1b6cd9bf8b78e3b553f343faad60dd93a6c05cdf14ff630a708fa3a8b90"
+    },
+    {
+      "name": "unicode_space_action",
+      "request_json": "{\"action\": \"\\u3000pay\\u00a0\", \"amount\": \"1\"}",
+      "expected_hash": "5ed9d1b6cd9bf8b78e3b553f343faad60dd93a6c05cdf14ff630a708fa3a8b90"
+    },
+    {
+      "name": "unknown_action_kept",
+      "request_json": "{\"action\": \"  Frobnicate \", \"amount\": \"1\"}",
+      "expected_hash": "53bd2d251164d92a6d8eff121730395514a5ab7405d9db65ea63c2af6b905f7a"
+    },
+    {
+      "name": "every_key",
+      "request_json": "{\"amount\": \"1\", \"currency\": \"USD\", \"rail\": \"xrpl\", \"preferred_rail\": \"xrpl\", \"alias\": \"pay:a\", \"alias_uri\": \"pay:a\", \"alias_name\": \"pay:a\", \"payment_category\": \"c\", \"payment_type\": \"t\", \"action\": \"status\", \"memo\": \"dropped\", \"extra_field\": \"dropped\"}",
+      "expected_hash": "8d4e765da3bca525c050c4951756ca534618cbf449c340cada53cb75fe046724"
+    }
+  ],
+  "semantic_hash": [
+    {
+      "name": "nested",
+      "message_json": "{\"action\": \"send\", \"z\": {\"b\": 2, \"a\": \"\\u00e9\"}, \"list\": [true, null, 1.5, 10.0, 7]}",
+      "normalized_action": "EXECUTE_PAYMENT",
+      "expected_hash": "37be66a724df7af07140c2a6b3a0a10d50697e46a68ebe90ad489a29dbd0fa9a"
+    },
+    {
+      "name": "no_action",
+      "message_json": "{\"intent\": \"pay vendor\", \"amount\": 2.50}",
+      "normalized_action": null,
+      "expected_hash": "446984592c3663fbe7a768f0adb50687d9abc7c7a19c9a4e446bb71cf93d9460"
+    },
+    {
+      "name": "astral",
+      "message_json": "{\"action\": \"lookup\", \"note\": \"\\ud83d\\ude80 launch\"}",
+      "normalized_action": "QUERY",
+      "expected_hash": "ac8c3589fb1c8205fd22189a88500abb87591482cd4dc32a8ebe82120e56c6e9"
+    }
+  ],
+  "normalize_action_ok": [
+    {
+      "input": "\u001cSEND\u001f",
+      "output": "EXECUTE_PAYMENT"
+    },
+    {
+      "input": "\u3000verify\u00a0",
+      "output": "VERIFY"
+    },
+    {
+      "input": "Status",
+      "output": "REPORT"
+    }
+  ],
+  "x_payment_header": [
+    {
+      "tx_hash": "B92C23BADE5864569F82BB65B60F84D3B6A8C59A75FC1E75B3DF2A5121A4DA77",
+      "payer": "",
+      "expected": "eyJ4NDAyVmVyc2lvbiI6IDIsICJwYXlsb2FkIjogeyJ0eEhhc2giOiAiQjkyQzIzQkFERTU4NjQ1NjlGODJCQjY1QjYwRjg0RDNCNkE4QzU5QTc1RkMxRTc1QjNERjJBNTEyMUE0REE3NyJ9fQ=="
+    },
+    {
+      "tx_hash": "EA8159536A8D557492AF64421EBD78BC0C185A31DCC7CC4F1CAE553245BADBDA",
+      "payer": "r3VGLFEurBH1qHUJSHtSG9mRDfYf98wfga",
+      "expected": "eyJ4NDAyVmVyc2lvbiI6IDIsICJwYXlsb2FkIjogeyJ0eEhhc2giOiAiRUE4MTU5NTM2QThENTU3NDkyQUY2NDQyMUVCRDc4QkMwQzE4NUEzMURDQzdDQzRGMUNBRTU1MzI0NUJBREJEQSIsICJwYXllciI6ICJyM1ZHTEZFdXJCSDFxSFVKU0h0U0c5bVJEZllmOTh3ZmdhIn19"
+    },
+    {
+      "tx_hash": "t\u00e9st\"q",
+      "payer": "p\\x",
+      "expected": "eyJ4NDAyVmVyc2lvbiI6IDIsICJwYXlsb2FkIjogeyJ0eEhhc2giOiAidFx1MDBlOXN0XCJxIiwgInBheWVyIjogInBcXHgifX0="
+    }
+  ],
+  "invoice_id_hash": [
+    {
+      "input": "61c96b31238bb2cc171d51309bdce26c",
+      "expected": "985110DD8BBA7F737588EE752BA790F7D500B94A5D4F4DEB6245D226BA07F676"
+    },
+    {
+      "input": "",
+      "expected": "E3B0C44298FC1C149AFBF4C8996FB92427AE41E4649B934CA495991B7852B855"
+    },
+    {
+      "input": "caf\u00e9",
+      "expected": "850F7DC43910FF890F8879C0ED26FE697C93A067AD93A7D50F466A7028A9BF4E"
+    }
+  ]
+}
